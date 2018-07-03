@@ -17,4 +17,6 @@ module.exports = authUrl => async (ctx, next) => {
       throw Boom.badGateway(`${authUrl} failed to resolve the session.`)
     }
   }
+
+  return next()
 }
