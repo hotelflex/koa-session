@@ -14,7 +14,11 @@ module.exports = authUrl => async (ctx, next) => {
       if (resp.status !== 200) throw new Error()
       ctx.request.session = await resp.json()
     } catch (err) {
-      throw Boom.badGateway(`${authUrl} failed to resolve the session.`)
+      throw Boom.badGateway(
+        `Authenticator ${authUrl} failed to resolve the session: ${
+          err.message
+        }`,
+      )
     }
   }
 
